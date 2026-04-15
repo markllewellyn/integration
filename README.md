@@ -1,6 +1,6 @@
 # Multi-Tenant Commerce Integration Platform (Production Excerpts)
 
-This repository contains selected excerpts from a production integration system demonstrating architecture, patterns, and implementation approaches. Sensitive and proprietary details have been removed.
+This repository contains selected excerpts from a production integration system demonstrating architecture, patterns, and implementation approaches.  Sensitive and proprietary details have been removed.
 
 ## Overview
 
@@ -15,7 +15,7 @@ The system was developed for a third-party enterprise integration scenario and i
 - Cancellations
 - Product-related data
 
-This is not a full application export. It is a curated set of representative components showing architecture, design patterns, and implementation approaches.
+This is not a full application export.  It is a curated set of representative components showing architecture, design patterns, and implementation approaches.
 
 ---
 
