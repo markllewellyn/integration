@@ -75,7 +75,6 @@ Azure Function-based orchestration that:
 - Retrieves active tenants
 - Calculates processing windows per tenant
 - Executes API calls per tenant
-- Maintains incremental sync state
 
 ---
 
@@ -84,7 +83,6 @@ Handles:
 - Authentication and token management
 - External API communication
 - Rate limiting and retry logic
-- Resilient request execution
 
 ---
 
