@@ -15,7 +15,7 @@ The system was developed for a third-party enterprise integration scenario and i
 - Cancellations
 - Product-related data
 
-This is not a full application export.  It is a curated set of representative components showing architecture, design patterns, and implementation approaches.
+This is not a full application export.  It is a selected set of representative components showing architecture, design patterns, and implementation approaches.
 
 ---
 
@@ -48,7 +48,7 @@ The system follows a cloud-native, layered approach:
 
 documents/
 - ArchitectureDiagram.png
-- ok.cs
+- Project.png
 
 models/
 - TenantConfiguration.cs
