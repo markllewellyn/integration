@@ -1,100 +1,52 @@
-# Multi-Tenant Order Processing System (Production Excerpts)
+# Multi-Tenant Order Processing System (Production System Excerpts)
 
 ## Overview
 
-This repository contains **selected code excerpts and supporting documentation** from a production multi-tenant order processing system built in C# using Azure Functions.
+This repository contains **selected code excerpts, models, and supporting documentation** from a production multi-tenant order processing system built in C# using Azure Functions.
 
-The system was designed and implemented as part of a **third-party enterprise integration platform**, handling large-scale order ingestion, transformation, and persistence across multiple tenant environments.
+The system was developed as part of a **third-party enterprise integration platform**, responsible for large-scale ingestion, transformation, and processing of order-related data across multiple tenant environments.
 
-This repository does not represent a full application. Instead, it highlights **key architectural components and engineering patterns** used within the broader solution.
+This repository does not represent a full application. Instead, it provides a curated set of **architectural components and implementation patterns** used within a broader production system.
 
 ---
 
 ## System Context
 
-The full production system includes:
+The full production system supports:
 
-- Multi-tenant orchestration across configurable data sources
-- External API integrations for order retrieval and enrichment
-- Stateful incremental processing per tenant
-- Resilient execution with retry and failure handling strategies
-- Secure configuration management via Azure Key Vault
-- Hybrid persistence across Cosmos DB, Blob Storage, and Oracle databases
+- Multi-tenant orchestration across dynamically configured tenants
+- External API integration for order, shipping, and reporting data
+- Stateful incremental processing per tenant (time-window based)
+- Secure configuration management using Azure Key Vault
+- Hybrid persistence across Cosmos DB, blob storage, and relational database systems
+- Resilient execution patterns including retry, throttling, and backoff strategies
 
 ---
 
 ## Architecture Overview
 
-The system is structured into the following logical layers:
+The system follows a layered, cloud-native architecture:
 
 - **Azure Functions (Orchestration Layer)**  
-  Timer-triggered functions coordinate tenant processing workflows.
+  Timer-triggered functions coordinate tenant-based processing workflows.
 
 - **Tenant Configuration Layer**  
-  Determines tenant source (Cosmos DB, Blob Storage, or local development).
+  A configuration-driven model that determines:
+  - API endpoints
+  - processing behaviour
+  - execution limits
+  - state tracking per tenant
 
 - **API Integration Layer**  
-  Handles external system communication and authentication.
+  Handles external system communication, authentication, and request execution with resilience handling.
 
 - **Processing & Transformation Layer**  
-  Maps external order data into internal domain models.
+  Maps external API responses into internal domain models.
 
 - **Persistence Layer**  
-  Writes processed data into downstream systems (Oracle / Cosmos DB).
+  Stores processed data into downstream systems including:
+  relational databases, Cosmos DB, and blob storage depending on tenant configuration.
 
 ---
 
-## Included Code Snippets
-
-The repository contains representative excerpts from key areas of the system:
-
-/Snippets  
-- 01-MultiTenantOrderProcessing.cs  
-- 02-ApiExecutionLayer.cs  
-- 03-KeyVaultService.cs  
-- 04-CosmosTenantRepository.cs  
-- 05-FunctionStartup.cs  
-
-/Docs  
-- ArchitectureOverview.md  
-- ProcessingFlowDiagram.png  
-
----
-
-## Engineering Highlights
-
-This system demonstrates:
-
-- Multi-tenant architecture design
-- Cloud-native Azure Function orchestration
-- Secure secret management using Azure Key Vault
-- Resilient API communication patterns (retry, throttling, backoff)
-- Separation of concerns across integration layers
-- Hybrid persistence strategy across multiple data stores
-- Production-grade logging and observability patterns
-
----
-
-## Confidentiality Statement
-
-This repository contains **sanitised and partial excerpts** of a production system built for a third-party enterprise environment.
-
-All:
-- client-specific identifiers  
-- proprietary business logic  
-- sensitive configuration values  
-- and production data structures  
-
-have been removed or abstracted.
-
-The intent is to demonstrate **engineering approach, architecture, and implementation quality**, not to reproduce the full system.
-
----
-
-## About
-
-Senior Software Engineer specialising in:
-- C# / .NET backend systems  
-- Azure Functions & cloud integration  
-- Multi-tenant distributed processing systems  
-- Enterprise API and data pipeline architecture  
+## Repository Structure
