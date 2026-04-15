@@ -1,5 +1,7 @@
 # Multi-Tenant Commerce Integration Platform (Production Excerpts)
 
+This repository contains selected excerpts from a production integration system demonstrating architecture, patterns, and implementation approaches. Sensitive and proprietary details have been removed.
+
 ## Overview
 
 This repository contains selected code excerpts, models, and supporting components from a production multi-tenant commerce integration platform built in C# using Azure Functions.
