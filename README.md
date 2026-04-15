@@ -48,7 +48,6 @@ The system follows a layered, cloud-native architecture:
 
 documents/
 - ArchitectureDiagram.png
-- Project.bmp
 - Project.png
 - ok.cs
 
