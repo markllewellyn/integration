@@ -1,46 +1,44 @@
-# Multi-Tenant Commerce Integration Platform (Production System Excerpts)
+# Multi-Tenant Commerce Integration Platform (Production Excerpts)
 
 ## Overview
 
-This repository contains selected code excerpts, models, and supporting documentation from a production multi-tenant commerce integration platform built in C# using Azure Functions.
+This repository contains selected code excerpts, models, and supporting components from a production multi-tenant commerce integration platform built in C# using Azure Functions.
 
-The system was developed as part of a third-party enterprise integration solution responsible for ingesting, transforming, and processing commerce-related data across multiple tenant environments.
+The system was developed for a third-party enterprise integration scenario and is responsible for processing commerce-related data across multiple tenants, including:
 
-The platform handles multiple commerce domains including:
 - Orders
 - Order items
-- Shipping and fulfilment data
+- Shipping information
 - Returns
 - Cancellations
-- Product and item-level data
+- Product-related data
 
-This repository does not represent a full application. Instead, it provides a curated set of architectural components and implementation patterns used within a broader production system.
+This is not a full application export. It is a curated set of representative components showing architecture, design patterns, and implementation approaches.
 
 ---
 
-## System Context
+## System Summary
 
-The full production system supports:
+The platform is designed to support:
 
-- Multi-tenant orchestration across dynamically configured tenants
-- External API integration for commerce data (orders, returns, cancellations, and product data)
-- Stateful incremental processing per tenant (time-window based execution)
-- Secure configuration management using Azure Key Vault
-- Hybrid persistence across Cosmos DB, blob storage, and relational databases
-- Resilient execution patterns including retry, throttling, and exponential backoff
-- Tenant-driven configuration controlling execution behaviour and external endpoints
+- Multi-tenant processing using configuration-driven execution
+- External commerce API integration
+- Incremental data processing per tenant
+- Secure secret management using Azure Key Vault
+- Resilient API communication (retry, throttling, backoff)
+- Hybrid data persistence (relational database, Cosmos DB, blob storage)
 
 ---
 
 ## Architecture Overview
 
-The system follows a layered, cloud-native architecture:
+The system follows a cloud-native, layered approach:
 
-- Azure Functions (Orchestration Layer)
-- Tenant Configuration Layer
-- API Integration Layer
-- Processing & Transformation Layer
-- Persistence Layer (Database, Cosmos DB, Blob Storage)
+- **Azure Functions** – orchestration and scheduled execution
+- **Tenant Configuration Layer** – controls per-tenant behaviour and state
+- **API Integration Layer** – external commerce system communication
+- **Processing Layer** – transformation of API responses into domain models
+- **Persistence Layer** – database / Cosmos DB / blob storage depending on configuration
 
 ---
 
@@ -48,13 +46,12 @@ The system follows a layered, cloud-native architecture:
 
 documents/
 - ArchitectureDiagram.png
-- Project.png
 - ok.cs
 
 models/
+- TenantConfiguration.cs
 - OrderItem.cs
 - ShippingAddress.cs
-- TenantConfiguration.cs
 
 snippets/
 - 01-MultiTenantOrderProcessing.cs
@@ -71,44 +68,35 @@ README.md
 
 ## Key Components
 
-### Multi-Tenant Orchestration
-Azure Function-based orchestration engine that:
-- Retrieves active tenants from configuration sources
-- Calculates incremental processing windows per tenant
-- Executes tenant-specific commerce data ingestion
-- Persists processing state for incremental sync
-
----
-
-### Tenant Configuration Model
-A central configuration model enabling dynamic behaviour per tenant:
-- API endpoints per tenant
-- Execution timing and retry limits
-- Feature flags and processing controls
-- State tracking for incremental processing
+### Multi-Tenant Processing
+Azure Function-based orchestration that:
+- Retrieves active tenants
+- Calculates processing windows per tenant
+- Executes API calls per tenant
+- Maintains incremental sync state
 
 ---
 
 ### API Integration Layer
-Responsible for:
-- External commerce API communication
-- Authentication token management
-- Rate limiting and throttling control
-- Retry and backoff strategies
+Handles:
+- Authentication and token management
+- External API communication
+- Rate limiting and retry logic
+- Resilient request execution
 
 ---
 
-### Secure Configuration Management
-Uses Azure Key Vault for:
-- Secure secret retrieval
-- Environment-aware configuration
-- Local development fallback support
+### Configuration Management
+Supports:
+- Azure Key Vault integration for secrets
+- Environment-based configuration loading
+- Local development fallback configuration
 
 ---
 
-### Data Persistence Layer
-Supports multiple storage strategies:
-- Relational database persistence
+### Data Persistence
+Depending on tenant configuration:
+- Relational database storage for transactional data
 - Cosmos DB for configuration/state
 - Blob storage for tenant configuration files
 
@@ -117,62 +105,21 @@ Supports multiple storage strategies:
 ## Models
 
 ### TenantConfiguration
-Defines tenant-specific behaviour, including:
+Defines per-tenant behaviour including:
 - API endpoints
-- processing state (e.g. OrdersCreatedAfter)
-- execution timeouts
-- feature flags
+- execution state (e.g. incremental sync timestamps)
+- processing settings and limits
 
 ### OrderItem
-Represents order line items from commerce systems
+Represents order line-level commerce data
 
 ### ShippingAddress
-Represents shipping data per order
+Represents order shipping details
 
 ---
 
-## Engineering Highlights
+## Notes
 
-- Multi-tenant distributed architecture
-- Azure Functions orchestration model
-- Configuration-driven execution design
-- Secure secret management via Key Vault
-- Robust API retry and throttling strategy
-- Separation of concerns across integration layers
-- Multi-domain commerce processing (orders, returns, cancellations)
-- Hybrid persistence strategy (Database, Cosmos DB, Blob Storage)
-- Production-grade logging and resilience patterns
-
----
-
-## Architecture Diagram
-
-See:
-documents/ArchitectureDiagram.png
-
----
-
-## Confidentiality Statement
-
-This repository contains sanitised excerpts of a production system built for a third-party enterprise environment.
-
-All sensitive identifiers, proprietary logic, and production configuration details have been removed or abstracted.
-
-This project is intended to demonstrate:
-- engineering approach
-- architecture design
-- implementation quality
-
-rather than reproduce the full production system.
-
----
-
-## About
-
-Senior Software Engineer specialising in:
-- C# / .NET backend systems
-- Azure Functions and cloud integration
-- Multi-tenant distributed processing systems
-- Enterprise API integration platforms
-- Configuration-driven architectures
-- Hybrid persistence patterns
+- All sensitive configuration values and proprietary business logic have been removed
+- This repository contains representative excerpts only
+- Intended to demonstrate architecture and implementation approach
